@@ -8,7 +8,7 @@ This factor modulates the daysOld count, effectively altering the perceived age 
 ### Example of entropy use:
 
 ### entropy: 123456
-
+```
 Entropy[1] = physicalTrait1 && Role
 Entropy[2] = physicalTrait2
 Entropy[3] = physicalTrait3
@@ -18,7 +18,7 @@ Entropy[6] = colour2 && ForgePotential
 Entropy = initalNukeFactor / 4
 Entropy % 10 = performanceFactor
 Entropy % 3 ? 0 == Role
-
+```
 ## Affect on Gameplay
 
 Performance factor adds massive gameplay enchancements to TraitForge. It introduces uniqueness to entities, and acts as contributing factor to the value of entity.
