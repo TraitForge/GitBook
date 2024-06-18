@@ -9,7 +9,7 @@ Once an Entity has used all of its ForgePotential for the year it will return an
 To regain the lost ForgePotential a player must simply wait 1 year. The game has intergrated a timestamp from mint that will reset the mapping count back to the [5] digit entropy number once 1 year has been passed in blocks. The function resposible for this is "_resetBreedingCountIfNeeded".
 
 ### entropy: 123456
-
+```
 Entropy[1] = physicalTrait1 && Role
 Entropy[2] = physicalTrait2
 Entropy[3] = physicalTrait3
@@ -19,7 +19,7 @@ Entropy[6] = colour2
 Entropy = initalNukeFactor / 4
 Entropy % 10 = performanceFactor
 Entropy % 3 ? 0 == Role
-
+```
 ### How does mergePotential affect gameplay? 
 
 Having a capped limit on forge potential allows for strategic gameplay. Encouraging players to forge their entities within a 1 year period to fully utilise them. Allowing a reset of forge potential increases economic market flow and incentivises long term gameplay.
