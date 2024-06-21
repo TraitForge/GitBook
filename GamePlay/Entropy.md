@@ -3,7 +3,7 @@
 The traits per Entity are derived from “Entropy” a 6-digit random number associated with each Entity. The entropy is established at the genesis of the game and cannot be changed. Role is either “Forger” or “Merger”, with a 2:1 bias towards Mergers. Forge Potential dictates how many times an Entity can forge before becoming infertile *till reset* (10% of the population is infertile (0 Forge Potential). Performance Factor dictates how quickly an Entity matures. Initial Nuke Factor dictates the starting Nuke Factor for each Entity. 
 
 ### entropy: 123456
-
+```
 Entropy[1] = physicalTrait1 && Role
 Entropy[2] = physicalTrait2
 Entropy[3] = physicalTrait3
@@ -13,7 +13,7 @@ Entropy[6] = colour2
 Entropy = initalNukeFactor
 Entropy % 10 = performanceFactor
 Entropy % 3 ? 0 == Role
-
+```
 Entropy is set into uint256 slots, with each slot able to contain a 78 digit number - or 13 concatenated entropies. Thus 770 slots are needed to contain 10,000 entropies. Genesis entropies are seeded using blockhash. Setting all 770 uint256 slots cost 15m gas, and due to contract & block size limits, this cannot be set in contract initialisation. Instead a function writes in entropy in 3 passes after the contract is deployed and remain immutable after this.
 
 There is a certain entropy, “999999” which is referred to as “the Golden God”, since it has perfect parameters and will exceed all other entities if played correctly. The Golden God is scanned for and is kept out of the first 2 passes, but is deliberately set in the final pass (at some random point). The Golden God should be the most valuable entity. A function is built to read entropy for each entity, as well as convert to entity traits at any point in time. The Golden God entropies' position changes every generation. 
