@@ -40,7 +40,7 @@ The Nuke Fund is a contract that accumulates ETH from new mints and economic act
 - The nuke factor influences the proportion of the fund that can be claimed by the entity owner.
 
 ### Claim Limits:
-- The claim from nuking a entity cannot exceed 50% of the current fund balance, ensuring that the fund remains sustainable and no single claim depletes it excessively.
+- The claim from nuking an entity cannot exceed 50% of the current fund balance, ensuring that the fund remains sustainable and no single claim depletes it excessively.
 
 ### Entity Burn:
 - After a claim is made, the corresponding entity is burnt, which means it is permanently removed from circulation. 
