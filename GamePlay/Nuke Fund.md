@@ -19,7 +19,7 @@ The Nuke Fund is a contract that accumulates ETH from new mints and economic act
 
 - 10% Developer Share: Of the total ETH received, 10% is earmarked for the DevFund.
 
-- Remaining 90%: This portion is added to the main fund (HoneyPot) which is used for the nuking payouts.
+- Remaining 90%: This portion is added to the main fund (Nuke fund) which is used for the nuking payouts.
 
 ### Dev Share Distribution:
 - The distribution of the 10% developer share depends on whether the airdrop has started and whether DAO fund contributions are allowed:
