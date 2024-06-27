@@ -43,7 +43,7 @@ The Nuke Fund is a contract that accumulates ETH from new mints and economic act
 - The claim from nuking an entity cannot exceed 50% of the current fund balance, ensuring that the fund remains sustainable and no single claim depletes it excessively.
 
 ### Entity Burn:
-- After a claim is made, the corresponding entity is burnt, which means it is permanently removed from circulation. 
+- After a claim is made to the nuke fund, the corresponding entity is burnt, which means it is permanently removed from circulation. 
 
 ### Eligibility for Nuking:
 - An entity must be at least three days old to be eligible for nuking. This rule prevents immediate claims after acquisition and encourages longer-term holding.
