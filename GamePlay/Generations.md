@@ -22,15 +22,16 @@ mapping(uint256 => uint256) public generationMintCounts;
 This function increments the generation number and resets the mint count for the new generation, ensuring the token cap per generation is enforced.
 
 ``` 
-function _incrementGeneration() private {
+  function _incrementGeneration() private {
     require(
-        generationMintCounts[currentGeneration] >= MAX_TOKENS_PER_GEN,
-        'Generation limit not yet reached'
+      generationMintCounts[currentGeneration] >= maxTokensPerGen,
+      'Generation limit not yet reached'
     );
     currentGeneration++;
     generationMintCounts[currentGeneration] = 0;
+    entropyGenerator.initializeAlphaIndices();
     emit GenerationIncremented(currentGeneration);
-}
+  }
 ``` 
 
 Other relevant generation advancement code can be found in "forging" and the "_mintInternal" functions. In the  "forging" function when a new entity is forged and created it is added to the circulation of the next generation. 
