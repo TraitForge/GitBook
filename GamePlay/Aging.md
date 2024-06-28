@@ -15,13 +15,15 @@ Mature Entities would be extremely lucrative to forge or nuke, as they would be 
 This function retrieves the creation timestamp of an Entity based on its tokenId. It ensures the entity exists by checking if it has an owner. If the token doesn't exist, it reverts with an error. This timestamp is essential for calculating the age of the Entity and other time-dependent attributes.
 
 ```
-function getTokenCreationTimestamp(uint256 tokenId) public view returns (uint256) {
+function getTokenCreationTimestamp(
+    uint256 tokenId
+  ) public view returns (uint256) {
     require(
-        ownerOf(tokenId) != address(0),
-        'ERC721: query for nonexistent token'
+      ownerOf(tokenId) != address(0),
+      'ERC721: query for nonexistent token'
     );
     return tokenCreationTimestamps[tokenId];
-}
+  }
 ```
 
 ### 2. Function getTokenAge(uint256 tokenId)
@@ -29,13 +31,13 @@ function getTokenCreationTimestamp(uint256 tokenId) public view returns (uint256
 Calculates and returns the age of an NFT in seconds format. This function uses the creation timestamp obtained from getTokenCreationTimestamp and subtracts it from the current block timestamp (block.timestamp). It also checks that the token exists before performing the calculation.
 
 ```
-function getTokenAge(uint256 tokenId) public view returns (uint256) {
+ function getTokenAge(uint256 tokenId) public view returns (uint256) {
     require(
-        ownerOf(tokenId) != address(0),
-        'ERC721: query for nonexistent token'
+      ownerOf(tokenId) != address(0),
+      'ERC721: query for nonexistent token'
     );
     return block.timestamp - tokenCreationTimestamps[tokenId];
-}
+  }
 ```
 
 ### 3. Function calculateAge
@@ -53,7 +55,10 @@ function calculateAge(uint256 tokenId) public view returns (uint256) {
       24;
     uint256 perfomanceFactor = nftContract.getTokenEntropy(tokenId) % 10;
 
-    uint256 age = (daysOld * perfomanceFactor * 10000 * ageMultiplier) / 365;
+    uint256 age = (daysOld *
+      perfomanceFactor *
+      MAX_DENOMINATOR *
+      ageMultiplier) / 365; // add 5 digits for decimals
     return age;
   }
 ```
