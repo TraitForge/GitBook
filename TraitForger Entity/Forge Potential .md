@@ -31,12 +31,12 @@ Having a capped limit on forge potential allows for strategic gameplay. Encourag
 Function _resetForgingCountIfNeeded checks if a year has passed since the last forging count reset for an Entity and, if so, recalculates the count based on the Entities entropy. The new count, termed forge potential, is derived by scaling the entropy and using its modulus. The breeding count is then updated to this value, and the reset timestamp is set to the current time, ensuring the breeding settings reflect the Entity's unique characteristics annually.
 
 ```
-function _resetForgeCountIfNeeded(uint256 tokenId) private {
-    uint256 oneYear = 365 days * 1;
-    if (block.timestamp >= lastForgeResetTimestamp[tokenId] + oneYear) {
-      uint256 entropy = nftContract.getTokenEntropy(tokenId);
-      uint8 forgePotential = uint8((entropy / 10000) % 10);
-      ForgingCounts[tokenId] = forgePotential; // Reset to the forge potential
+  function _resetForgingCountIfNeeded(uint256 tokenId) private {
+    uint256 oneYear = oneYearInDays;
+    if (lastForgeResetTimestamp[tokenId] == 0) {
+      lastForgeResetTimestamp[tokenId] = block.timestamp;
+    } else if (block.timestamp >= lastForgeResetTimestamp[tokenId] + oneYear) {
+      forgingCounts[tokenId] = 0; // Reset to the forge potential
       lastForgeResetTimestamp[tokenId] = block.timestamp;
     }
   }
@@ -47,23 +47,36 @@ function _resetForgeCountIfNeeded(uint256 tokenId) private {
 Function checks if an Entity qualifies as a "forger" based on its entropy. It uses the condition entropy modulo 3 must be zero for the Entity to be listed for forging. If the Entity does not meet this check, the operation is blocked with an error message "(isForger, 'Only forgers can list for breeding');".
 
 ```
- function listForForging(uint256 tokenId, uint256 fee) public {
+   function listForForging(
+    uint256 tokenId,
+    uint256 fee
+  ) public whenNotPaused nonReentrant {
+    require(!listings[tokenId].isListed, 'Token is already listed for forging');
     require(
       nftContract.ownerOf(tokenId) == msg.sender,
       'Caller must own the token'
     );
+    require(
+      fee >= minimumListFee,
+      'Fee should be higher than minimum listing fee'
+    );
+
     _resetForgingCountIfNeeded(tokenId);
+
     uint256 entropy = nftContract.getTokenEntropy(tokenId); // Retrieve entropy for tokenId
     uint8 forgePotential = uint8((entropy / 10) % 10); // Extract the 5th digit from the entropy
     require(
-      forgingCounts[tokenId] < forgePotential,
+      forgePotential > 0 && forgingCounts[tokenId] <= forgePotential,
       'Entity has reached its forging limit'
     );
 
     bool isForger = (entropy % 3) == 0; // Determine if the token is a forger based on entropy
     require(isForger, 'Only forgers can list for forging');
 
-    listings[tokenId] = Listing(true, fee);
+    listings[tokenId] = Listing(msg.sender, tokenId, true, fee);
+    listedTokenIds[listingCount] = tokenId;
+    listingCount++;
+
     emit ListedForForging(tokenId, fee);
   }
 ```
