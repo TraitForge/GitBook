@@ -81,21 +81,21 @@ function calculateAge(uint256 tokenId) public view returns (uint256) {
 Calculates the nuke factor of an entity, which influences the claimable amount from the nuke fund. This function ensures the tokens existence, then uses its entropy and age to compute the nuke factor. It divides the tokens entropy by four for an initial value, and adds this to a scaled product of the entities age in days. This resultant nuke factor determines the portion of the fund an entity owner can claim, integrating both the entities unique attributes and its age into the calculation.
 
 ``` 
-function calculateNukeFactor(uint256 tokenId) public view returns (uint256) {
-    require(
-      nftContract.ownerOf(tokenId) != address(0),
-      'ERC721: operator query for nonexistent token'
-    );
+  function calculateAge(uint256 tokenId) public view returns (uint256) {
+    require(nftContract.ownerOf(tokenId) != address(0), 'Token does not exist');
 
-    uint256 entropy = nftContract.getTokenEntropy(tokenId);
-    uint256 adjustedAge = calculateAge(tokenId);
+    uint256 daysOld = (block.timestamp -
+      nftContract.getTokenCreationTimestamp(tokenId)) /
+      60 /
+      60 /
+      24;
+    uint256 perfomanceFactor = nftContract.getTokenEntropy(tokenId) % 10;
 
-    uint256 initialNukeFactor = entropy / 4; // calcualte initalNukeFactor based on entropy
-
-    uint256 finalNukeFactor = ((adjustedAge * defaultNukeFactorIncrease) /
-      10000) + initialNukeFactor;
-
-    return finalNukeFactor;
+    uint256 age = (daysOld *
+      perfomanceFactor *
+      MAX_DENOMINATOR *
+      ageMultiplier) / 365; // add 5 digits for decimals
+    return age;
   }
 ``` 
 
@@ -105,18 +105,21 @@ The receive function handles incoming ETH transactions by first calculating and 
 
 ``` 
 receive() external payable {
-    uint256 devShare = msg.value / 10; // Calculate developer's share (10%)
+    uint256 devShare = msg.value / taxCut; // Calculate developer's share (10%)
     uint256 remainingFund = msg.value - devShare; // Calculate remaining funds to add to the fund
 
     fund += remainingFund; // Update the fund balance
 
     if (!airdropContract.airdropStarted()) {
-      devAddress.transfer(devShare); // Transfer dev's share
+      (bool success, ) = devAddress.call{ value: devShare }('');
+      require(success, 'ETH send failed');
       emit DevShareDistributed(devShare);
     } else if (!airdropContract.daoFundAllowed()) {
-      payable(owner()).transfer(devShare);
+      (bool success, ) = payable(owner()).call{ value: devShare }('');
+      require(success, 'ETH send failed');
     } else {
-      daoAddress.transfer(devShare); // Transfer dev's share
+      (bool success, ) = daoAddress.call{ value: devShare }('');
+      require(success, 'ETH send failed');
       emit DevShareDistributed(devShare);
     }
 
