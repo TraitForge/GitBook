@@ -32,7 +32,7 @@ Performance factor allows for competitive scenarios involving PVP. Players lucky
 Function calculateAge determines the age of an entity by calculating the days since its creation and adjusting this number with a performance factor derived from the entities entropy. It ensures the entity exists, computes the days old, scales this by the entropy-based performance factor, and converts the result from days to years. The age is then returned as an integer.
 
 ```
- function calculateAge(uint256 tokenId) public view returns (uint256) {
+function calculateAge(uint256 tokenId) public view returns (uint256) {
     require(nftContract.ownerOf(tokenId) != address(0), 'Token does not exist');
 
     uint256 daysOld = (block.timestamp -
