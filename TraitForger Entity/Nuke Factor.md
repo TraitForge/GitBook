@@ -1,6 +1,6 @@
 # Nuke Factor 
 
-NukeFactor represents an entities stake in the honeypot. Upon minting, an entity receives a NukeFactor ranging from 1-25%, determined by its inherent entropy. Through engaging gameplay elements like aging and forging, this percentage can be elevated up to a maximum of 50%. As the cornerstone of the TraitForge ecosystem, NukeFactor fuels competition, with players striving to achieve the highest percentage NukeFactor entities.
+Nuke Factor represents an entities stake in the Nuke Fund. Upon minting, an entity receives a Nuke Factor ranging from 1-25%, determined by its inherent entropy. Through engaging gameplay elements like aging and forging, this percentage can be elevated up to a maximum of 50%. As the cornerstone of the TraitForge ecosystem, Nuke Factor fuels competition, with players striving to achieve the highest percentage NukeFactor entities.
 NukeFactor has two stages. These stages are used to define the initial value of the entities NukeFactor, and the final nuke factor percentage which is the claimable amount from the Nuke Fund.
 
 ### Initialnukefactor:
