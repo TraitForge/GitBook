@@ -1,6 +1,6 @@
 # Visuals 
 
-TraitForge has a unqiue visual Entity system. It consists of generational progression, colour variation through maturity and an array of parameters providing unique visual distinction between entity's.
+TraitForge has a unique visual Entity system. It consists of generational progression, colour variation through maturity and an array of parameters providing unique visual distinction between entity's.
 
 ### Generational Progression
 
