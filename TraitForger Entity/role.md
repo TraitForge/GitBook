@@ -2,7 +2,7 @@
 
 The roles of forger and merger are key to the evolving ecosytem of TraitForge. The two roles provide the game with the unique ability for entities to forge with each-other to create offspring entities. These offspring entities carry the averaged traits of it's parents.
 
-Entities generated in the initial mint are split by modulus of 3, creating a population 1/3 forgers and 2/3 mergers. Forgers can list themselves for a fee and Mergers pay the fee in order to mint the next generation Entity. Next generation Entities can be sold, forged again or nuked.
+Entities generated in the initial mint are split by "?modulus3 == 0", creating a population 1/3 forgers and 2/3 mergers. Forgers can list themselves for a fee and Mergers pay the fee in order to mint the next generation Entity. Next generation Entities can be sold, forged again or nuked.
 ```
 ### entropy: 123456
 Entropy[1] = physicalTrait1 && Role
