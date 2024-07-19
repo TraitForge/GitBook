@@ -2,11 +2,11 @@
 
 Forge Potential is an entities ability to forge and create new entities with players. The [5] digit in an entity's entropy is it's ability to forge based off of entropy. Each entity may have the ability to forge 0-9 times depending on its Forge Potential.
 
-### Can you gain merge Potential?
+### Can you gain forge Potential?
 
-An Entities Forge Potential is determined by the [5] digit in entropy, when forging, this number is tracked by a mapping tallying of current merges specific to tokenIds with their entropy.
-Once an Entity has used all of its ForgePotential for the year it will return an error "ForgePotential limit reached, forge failed" for example. This is effectively rendering the Entity infertile for a period of time. 
-To regain the lost ForgePotential a player must simply wait 1 year. The game has intergrated a timestamp from mint that will reset the mapping count back to the [5] digit entropy number once 1 year has been passed in blocks. The function resposible for this is "_resetBreedingCountIfNeeded".
+An Entities Forge Potential is determined by the [5] digit in entropy, when forging, this number is tracked by a mapping tallying of current forges specific to tokenIds with their entropy.
+Once an Entity has used all of its Forge Potential it will return an error "ForgePotential limit reached, forge failed" for example. This is effectively rendering the Entity infertile for a period of time. 
+To regain the lost Forge Potential a player must simply wait 1 year. The game has a timestamp from mint that will reset the mapping count back to the [5] digit entropy number once 1 year has been passed in blocks. The function resposible for this is "_resetBreedingCountIfNeeded".
 
 ### entropy: 123456
 ```
@@ -22,7 +22,7 @@ Entropy % 3 ? 0 == Role
 ```
 ### How does mergePotential affect gameplay? 
 
-Having a capped limit on forge potential allows for strategic gameplay. Encouraging players to forge their entities within a 1 year period to fully utilise them. Allowing a reset of forge potential increases economic market flow and incentivises long term gameplay.
+Having a capped limit on forge potential allows for strategic gameplay. Encouraging players to forge their entities within a 1 year period to fully utilise their full potential. Allowing a reset of forge potential increases economic market flow and incentivises long term gameplay.
 
 ## Code and Functions
 
