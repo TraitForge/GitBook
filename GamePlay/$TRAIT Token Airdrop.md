@@ -5,9 +5,10 @@ TraitForge will receive an airdrop of $TRAIT tokens, which can be initiated at a
 ## Airdrop Allocation below:
 ### $TRAIT supply 1Billion 
 
+```
 50% (500Million) Players
 15% (150Million) DevFund 
 15% (150Million) kol’s/partners
 10% (100Million) airdrop to referrals
 10% (100Million) initial market liquidity
-
+```
