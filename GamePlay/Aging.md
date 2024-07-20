@@ -6,7 +6,7 @@ The ageing mechanic is a vital game mechanic for the TraitForge ecosystem, boost
 
 Every Entity ages by blocktime from their mint date, at a speed proportional to their Performance Factor (determined by entropy). 
 The fastest should mature fully after 30 days, with the slowest taking almost 2 years. Full maturity simply means their Nuke Factor is computed to be the maximum of 50%. 
-Mature Entities would be extremely lucrative to forge or nuke, as they would be able to claim 50% of the Nuke Fund.
+Mature Entities would be extremely lucrative to forge with or nuke, as they would be able to claim 50% of the Nuke Fund.
 
 ## Code and Functions 
 
