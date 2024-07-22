@@ -81,21 +81,21 @@ function calculateAge(uint256 tokenId) public view returns (uint256) {
 Calculates the nuke factor of an entity, which influences the claimable amount from the nuke fund. This function ensures the tokens existence, then uses its entropy and age to compute the nuke factor. It divides the tokens entropy by four for an initial value, and adds this to a scaled product of the entities age in days. This resultant nuke factor determines the portion of the fund an entity owner can claim, integrating both the entities unique attributes and its age into the calculation.
 
 ``` 
-  function calculateAge(uint256 tokenId) public view returns (uint256) {
-    require(nftContract.ownerOf(tokenId) != address(0), 'Token does not exist');
+  function calculateNukeFactor(uint256 tokenId) public view returns (uint256) {
+    require(
+      nftContract.ownerOf(tokenId) != address(0),
+      'ERC721: operator query for nonexistent token'
+    );
 
-    uint256 daysOld = (block.timestamp -
-      nftContract.getTokenCreationTimestamp(tokenId)) /
-      60 /
-      60 /
-      24;
-    uint256 perfomanceFactor = nftContract.getTokenEntropy(tokenId) % 10;
+    uint256 entropy = nftContract.getTokenEntropy(tokenId);
+    uint256 adjustedAge = calculateAge(tokenId);
 
-    uint256 age = (daysOld *
-      perfomanceFactor *
-      MAX_DENOMINATOR *
-      ageMultiplier) / 365; // add 5 digits for decimals
-    return age;
+    uint256 initialNukeFactor = entropy / 40; // calcualte initalNukeFactor based on entropy, 5 digits
+
+    uint256 finalNukeFactor = ((adjustedAge * defaultNukeFactorIncrease) /
+      MAX_DENOMINATOR) + initialNukeFactor;
+
+    return finalNukeFactor;
   }
 ``` 
 
