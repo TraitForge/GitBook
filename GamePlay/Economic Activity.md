@@ -9,9 +9,9 @@ As gameplay increases and the Nuke Fund rises, Entities should accumulate consta
 
 Economic activity can be broken down across these contracts: EntityForging, EntityTrading, NukeFund, Airdrop, DevFund and TraitForgeNft.
 
-## Token Creation and Sales (TraitForgeNft Contract)
+## Entity Creation and Sales (TraitForgeNft Contract)
 
-- Minting Entities: Users can mint tokens at a price that increases with each mint within the current generation. This creates an economic incentive to mint earlier in each generation cycle.
+- Minting Entities: Users can mint entities at a price that increases with each mint within the current generation. This creates an economic incentive to mint earlier in each generation cycle.
 
 - Revenue Distribution: Minting fees are collected and part of these fees may be distributed to the NukeFund based on certain conditions, facilitating a transfer of funds into a broader economic pool managed by the NukeFund.
 
