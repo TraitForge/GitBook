@@ -51,7 +51,9 @@ Function checks if an Entity qualifies as a "forger" based on its entropy. It us
     uint256 tokenId,
     uint256 fee
   ) public whenNotPaused nonReentrant {
-    require(!listings[tokenId].isListed, 'Token is already listed for forging');
+    Listing memory _listingInfo = listings[listedTokenIds[tokenId]];
+
+    require(!_listingInfo.isListed, 'Token is already listed for forging');
     require(
       nftContract.ownerOf(tokenId) == msg.sender,
       'Caller must own the token'
@@ -73,9 +75,9 @@ Function checks if an Entity qualifies as a "forger" based on its entropy. It us
     bool isForger = (entropy % 3) == 0; // Determine if the token is a forger based on entropy
     require(isForger, 'Only forgers can list for forging');
 
-    listings[tokenId] = Listing(msg.sender, tokenId, true, fee);
-    listedTokenIds[listingCount] = tokenId;
-    listingCount++;
+    ++listingCount;
+    listings[listingCount] = Listing(msg.sender, tokenId, true, fee);
+    listedTokenIds[tokenId] = listingCount;
 
     emit ListedForForging(tokenId, fee);
   }
