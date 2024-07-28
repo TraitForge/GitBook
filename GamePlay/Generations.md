@@ -1,6 +1,17 @@
 # Generations
 
-TraitForge has 10 generations, the inital mint upon game launch is gen1, this will increase as the game is played, to gens 2, 3 ect. Each generation holds a pre-determined array of 10,000 entities. The Mint fee for each generation is the same as Gen 1 (starts at 0.005, incrementing by 0.00025 ETH and ends at 2.5 ETH after 10,000). 
+TraitForge has 10 generations, the inital mint upon game launch is gen1, this will increase as the game is played, to gens 2, 3 ect. Each generation holds a pre-determined array of 10,000 entities. The Mint fee for each generation is the same as Gen 1 (starting at 0.005 ETH, incrementing by 0.000245 ETH upto the 10,000th entity). 
+
+Generation max mint price will increase as genreations progress, generations 1-4 are initaly set as seen below. Later generations are not currently set, as gens 1-4 will give feedback for game-play. 
+
+```
+Final Entity Price 
+ Gen 1: 0.25 ETH
+Gen 2: 0.30 ETH
+Gen 3: 0.35 ETH
+Gen 4: 0.4 ETH
+``` 
+
 Each generation has a new "TraitForger" character image. This allows players to easily identify entity generations while providing a diverse visual experience to the gameplay. Generation count is increased upon the minting of an entity or the creation of new entities through forging. 
 
 
