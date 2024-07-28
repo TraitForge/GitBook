@@ -44,7 +44,7 @@ Function _resetForgingCountIfNeeded checks if a year has passed since the last f
 
 ### 2. Function listForForging (entityForging Contract)
 
-Function checks if an Entity qualifies as a "forger" based on its entropy. It uses the condition entropy modulo 3 must be zero for the Entity to be listed for forging. If the Entity does not meet this check, the operation is blocked with an error message "(isForger, 'Only forgers can list for breeding');".
+The function listForForging checks if an Entity qualifies as a "forger" based on its entropy. It uses the condition that the entropy modulo 3 must be zero for the Entity to be listed for forging. Additionally, it ensures the token is not already listed for forging, verifies the caller's ownership of the token, validates that the provided fee meets the minimum requirement, and resets the forging count if necessary. The function retrieves the token's entropy, calculates its forge potential, and ensures the token has not exceeded its forging limit. If all conditions are met, it increments the listing count, stores the listing information, and emits an event indicating the token has been listed for forging. If any of these checks fail, the operation is blocked with an error message such as "Only forgers can list for forging."
 
 ```
    function listForForging(
