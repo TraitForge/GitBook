@@ -16,25 +16,19 @@ TraitForge will receive an airdrop of $TRAIT tokens, which can be initiated at a
 ### Player Total Entropy (PTE):
 For each player, sum up the entropy values of all their NFTs. If a player has 5 NFTs, and each NFT has an entropy which is a six-digit number, their PTE would be the sum of these five entropy values.
 ```
-PTE 
-i
-​	
- =E 
-i1
-​	
- +E 
-i2
-​	
- +E 
-i3
-​	
- +E 
-i4
-​	
- +E 
-i5
-​	
- 
+PTEi =Ei1 +Ei2 +Ei3 +Ei4 +Ei5
 ```
+### Total Entropy (TE):
+This is the sum of all players’ PTEs.
+```
+TE=∑i=1n PTE
+```
+### Player’s Token Allocation:
+To find the number of tokens  that a player  receives from the airdrop.
+```
+Ti =(PTEi TE )×500,000,000
+```
+
+
 
 
