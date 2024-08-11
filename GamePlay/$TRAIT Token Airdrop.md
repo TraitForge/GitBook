@@ -12,3 +12,29 @@ TraitForge will receive an airdrop of $TRAIT tokens, which can be initiated at a
 10% (100Million) Airdrop to referrals
 10% (100Million) Initial market liquidity
 ```
+## Equations for Airdrop
+### Player Total Entropy (PTE):
+For each player, sum up the entropy values of all their NFTs. If a player has 5 NFTs, and each NFT has an entropy which is a six-digit number, their PTE would be the sum of these five entropy values.
+```
+PTE 
+i
+​	
+ =E 
+i1
+​	
+ +E 
+i2
+​	
+ +E 
+i3
+​	
+ +E 
+i4
+​	
+ +E 
+i5
+​	
+ 
+```
+
+
