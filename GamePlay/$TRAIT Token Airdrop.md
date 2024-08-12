@@ -2,6 +2,9 @@
 
 TraitForge will receive an airdrop of $TRAIT tokens, which can be initiated at any time. Each instance of direct minting or forging to mint is recorded in the Airdrop Contract, along with the entropy of the minted entity. This process establishes a comprehensive tracking system for the total number of entities minted by each player and their corresponding entropy. In the event that a player 'nukes' an entity, the entropy allocated by that entity is removed. The cumulative entropy accrued by a player determines their final share of the airdrop. It is anticipated that the airdrop will be initiated within the first year of gameplay to facilitate a broader distribution of $TRAIT tokens.
 
+Up until the Airdrop is called, only Devs can withdraw Dev Fund dividends. This will pay for bootstrap dev costs. 
+For 30 days after the Airdrop is called, all DAO Fund rewards are accumulated and cannot be withdrawn by Devs. All ETH accumulated, as well as the 10% supply of TRAIT, is then deposited into a Uniswap liquidity pool, and the LP tokens are locked. Anyone can call this function, and as soon as it is called, the tokens are unlocked and available for trading. 
+
 ## Airdrop Allocation below:
 ### $TRAIT supply 1Billion 
 
