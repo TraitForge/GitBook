@@ -5,7 +5,7 @@ TraitForge will receive an airdrop of $TRAIT tokens, which can be initiated at a
 Up until the Airdrop is called, only Devs can withdraw Dev Fund dividends. This will pay for bootstrap dev costs. 
 For 30 days after the Airdrop is called, all DAO Fund rewards are accumulated and cannot be withdrawn by Devs. All ETH accumulated, as well as the 10% supply of TRAIT, is then deposited into a Uniswap liquidity pool, and the LP tokens are locked. Anyone can call this function, and as soon as it is called, the tokens are unlocked and available for trading. 
 
-## Airdrop Allocation below:
+## Airdrop allocation below:
 ### $TRAIT supply 1Billion 
 
 ```
