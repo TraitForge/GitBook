@@ -23,7 +23,7 @@ Entropy[3] = varOptions3 && colorOptions3
 Entropy[4] = varOptions4 && colorOptions4
 Entropy[5] = colorOptions5 && color2
 Entropy[6] = colorOptions6 && color1
-Entropy = initalNukeFactor
+Entropy /40 = initalNukeFactor
 Entropy % 10 = performanceFactor
 Entropy % 3 ? 0 == Role
 ```
