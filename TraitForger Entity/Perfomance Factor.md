@@ -9,13 +9,13 @@ This factor modulates the daysOld count, effectively altering the perceived age 
 
 ### entropy: 123456
 ```
-Entropy[1] = physicalTrait1 && Role
-Entropy[2] = physicalTrait2
-Entropy[3] = physicalTrait3
-Entropy[4] = physicalTrait4
-Entropy[5] = colour1
-Entropy[6] = colour2 && ForgePotential
-Entropy = initalNukeFactor / 4
+Entropy[1] = varOptions1
+Entropy[2] = varOptions2
+Entropy[3] = varOptions3 && colorOptions3
+Entropy[4] = varOptions4 && colorOptions4
+Entropy[5] = colorOptions5 && color2
+Entropy[6] = colorOptions6 && color1
+Entropy /40 = initalNukeFactor
 Entropy % 10 = performanceFactor
 Entropy % 3 ? 0 == Role
 ```
