@@ -5,15 +5,15 @@ The roles of forger and merger are key to the evolving ecosytem of TraitForge. T
 Entities generated in the initial mint are split by "?modulus3 == 0", creating a population 1/3 forgers and 2/3 mergers. Forgers can list themselves for a fee and Mergers pay the fee in order to mint the next generation Entity. Next generation Entities can be sold, forged again or nuked.
 ```
 ### entropy: 123456
-Entropy[1] = physicalTrait1 && Role
-Entropy[2] = physicalTrait2
-Entropy[3] = physicalTrait3
-Entropy[4] = physicalTrait4
-Entropy[5] = colour1
-Entropy[6] = colour2 && ForgePotential
-Entropy = initalNukeFactor / 4
+Entropy[1] = varOptions1
+Entropy[2] = varOptions2
+Entropy[3] = varOptions3 && colorOptions3
+Entropy[4] = varOptions4 && colorOptions4
+Entropy[5] = colorOptions5 && color2
+Entropy[6] = colorOptions6 && color1
+Entropy /40 = initalNukeFactor
 Entropy % 10 = performanceFactor
-Entropy % 3 ? 0 == isForger
+Entropy % 3 ? 0 == Role
 ```
 ## Functions and code
 
