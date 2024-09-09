@@ -128,61 +128,19 @@ function initializeAlphaIndices() public onlyOwner {
 
 ### Write Entropy Batches
 
-The functions writeEntropyBatch1, writeEntropyBatch2, and writeEntropyBatch3 are designed to initialize entropy slots in a smart contract in three sequential batches. The writeEntropyBatch1 function starts by ensuring that the last initialized index is less than the batch size before generating pseudo-random values for each slot using the block number and the current index, storing the values unless they equal 999999. The writeEntropyBatch2 function continues this process for the second batch, checking that the last initialized index falls within the appropriate range, and similarly generates and stores pseudo-random values. Finally, the writeEntropyBatch3 function completes the initialization by handling the remaining slots, verifying the index range for the third batch, and populating the slots with pseudo-random values up to the maximum slot index. Each function ensures a smooth progression through the batches without re-initialization or overlap, maintaining unique values in the entropy slots.
+The writeBatchEntropy function initializes a series of pseudo-random values in the entropySlots array, which are later used for generating smaller entropy values. To minimize gas costs, it processes these values in batches, using the keccak256 hash function combined with block data (block number, timestamp) to generate each entropy value. The function updates the lastInitializedIndex after each batch, allowing subsequent transactions to continue where the previous one left off, and is restricted to the contract owner for secure control over the entropy initialization process.
 
 ```
-function writeEntropyBatch1() public {
-    require(lastInitializedIndex < batchSize1, 'Batch 1 already initialized.');
-
-    uint256 endIndex = lastInitializedIndex + batchSize1; // calculate the end index for the batch
-    unchecked {
-      for (uint256 i = lastInitializedIndex; i < endIndex; i++) {
-        uint256 pseudoRandomValue = uint256(
-          keccak256(abi.encodePacked(block.number, i))
-        ) % uint256(10) ** 78; // generate a  pseudo-random value using block number and index
-        require(pseudoRandomValue != 999999, 'Invalid value, retry.');
-        entropySlots[i] = pseudoRandomValue; // store the value in the slots array
-      }
+function writeEntropyBatch() public onlyOwner {
+        uint256 endIndex = 833; // We want to initialize all 770 slots
+        for (uint256 i = lastInitializedIndex; i < endIndex; i++) {
+            uint256 pseudoRandomValue = uint256(
+                keccak256(abi.encodePacked(block.number, block.timestamp, i))
+            ) % uint256(10) ** 77; // generate a pseudo-random value using block number and index
+            entropySlots[i] = pseudoRandomValue; // store the value in the slots array
+        }
+        lastInitializedIndex = endIndex; // Update the index to indicate initialization is complete
     }
-    lastInitializedIndex = endIndex;
-  }
-
-  // second batch initialization
-  function writeEntropyBatch2() public {
-    require(
-      lastInitializedIndex >= batchSize1 && lastInitializedIndex < batchSize2,
-      'Batch 2 not ready or already initialized.'
-    );
-
-    uint256 endIndex = lastInitializedIndex + batchSize1;
-    unchecked {
-      for (uint256 i = lastInitializedIndex; i < endIndex; i++) {
-        uint256 pseudoRandomValue = uint256(
-          keccak256(abi.encodePacked(block.number, i))
-        ) % uint256(10) ** 78;
-        require(pseudoRandomValue != 999999, 'Invalid value, retry.');
-        entropySlots[i] = pseudoRandomValue;
-      }
-    }
-    lastInitializedIndex = endIndex;
-  }
-
-  // allows setting a specific entropy slot with a value
-  function writeEntropyBatch3() public {
-    require(
-      lastInitializedIndex >= batchSize2 && lastInitializedIndex < maxSlotIndex,
-      'Batch 3 not ready or already completed.'
-    );
-    unchecked {
-      for (uint256 i = lastInitializedIndex; i < maxSlotIndex; i++) {
-        uint256 pseudoRandomValue = uint256(
-          keccak256(abi.encodePacked(block.number, i))
-        ) % uint256(10) ** 78;
-        entropySlots[i] = pseudoRandomValue;
-      }
-    }
-    lastInitializedIndex = maxSlotIndex;
-  }
 ```
 
 ### Function initializeAlphaIndices
