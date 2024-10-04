@@ -9,10 +9,10 @@ For 30 days after the Airdrop is called, all DAO Fund rewards are accumulated an
 ### $TRAIT supply 1Billion 
 
 ```
-50% (500Million) Players
+55% (550Million) Players
 15% (150Million) DevFund 
-15% (150Million) kol’s/partners
-10% (100Million) Airdrop to referrals
+5% (50Million) kol’s/partners
+15% (150Million) Airdrop to referrals
 10% (100Million) Initial market liquidity
 ```
 ## Equations for Airdrop
