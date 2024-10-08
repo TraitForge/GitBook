@@ -1,10 +1,14 @@
+---
+title: "Generations and Minting"
+---
+
 # Generations
 
 TraitForge has 10 generations, the inital mint upon game launch is gen1, this will increase as the game is played, to gens 2, 3 ect. Each generation holds a pre-determined array of 10,000 entities. The Mint fee for each generation is the same as Gen 1 (starting at 0.005 ETH, incrementing by 0.000245 ETH upto the 10,000th entity). 
 
 Generation max mint price will increase as genreations progress, generations 1-4 are initaly set as seen below. Later generations are not currently set, as gens 1-4 will give feedback for game-play. 
 
-```
+```solidity
 Final Entity Price 
  Gen 1: 0.25 ETH
 Gen 2: 0.30 ETH
@@ -21,8 +25,7 @@ Each generation has a new "TraitForger" character image. This allows players to 
 
 These variables track the current generation number, the total circulation of tokens across all generations, and the count of tokens minted in each generation.
 
-
-``` 
+``` solidity
 uint256 public currentGeneration = 1;
 uint256 public totalGenerationCirculation = 0;
 mapping(uint256 => uint256) public generationMintCounts;
@@ -32,7 +35,7 @@ mapping(uint256 => uint256) public generationMintCounts;
 
 This function increments the generation number and resets the mint count for the new generation, ensuring the token cap per generation is enforced.
 
-``` 
+```solidity
   function _incrementGeneration() private {
     require(
       generationMintCounts[currentGeneration] >= maxTokensPerGen,
@@ -48,12 +51,12 @@ This function increments the generation number and resets the mint count for the
 Other relevant generation advancement code can be found in "forging" and the "_mintInternal" functions. In the  "forging" function when a new entity is forged and created it is added to the circulation of the next generation. 
 Function "_mintInternal" has logic to increment the current generation upon a mint and track the entity count through generations.
 
-``` 
+```solidity
  // Update generation and circulation
     currentGeneration++;
     totalGenerationCirculation++;
 ``` 
-``` 
+```solidity
 function _mintInternal(address to, uint256 mintPrice) internal {
     if (generationMintCounts[currentGeneration] >= MAX_TOKENS_PER_GEN) {
       _incrementGeneration();

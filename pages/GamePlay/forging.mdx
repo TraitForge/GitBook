@@ -1,3 +1,7 @@
+---
+title: "Forging"
+---
+
 # Forging Guide
 
 Forging involves the process of creating a new entity derived from the entropy of the two parent entities. Depending on your entity's role ("forger/merger"), players will have the in-game ability to forge their entities. The process of forging involves two separate entities. If an entity's ability to forge runs out (generation limit reached), then the next generation is minted with the genesis entropy off-by-one.
@@ -7,9 +11,11 @@ Forging involves the process of creating a new entity derived from the entropy o
 1. **A forger lists itself with an ETH fee for the merger to pay.**
 2. **A merger entity interacts and pays the forger's set ETH fee.**
 3. **The two parent entities' entropies are added together and then divided by 2 to create the offspring entity with a new entropy.**
-    ```solidity
-    newEntropy = (forgerEntropy + mergerEntropy) / 2
-    ```
+
+$$
+\text{newEntropy} = \frac{\text{forgerEntropy} + \text{mergerEntropy}}{2}
+$$
+
 4. **The new entity is minted, inherits a new entropy based on the parents' entropies, and is transferred to the merger's owner address.**
 
 The crucial parameters for an entity are “Nuke Factor”, “Forge Potential” and “Performance Factor”. These parameters are carried in an entity's entropy and are averaged upon forging. This will create a diverse forging marketplace with a mixture of high-low value entities for players to forge with.
@@ -59,7 +65,7 @@ function _mintNewEntity(
 
 The forging function in facilitates the forging between two entities, identified by parent1Id and parent2Id, to create a new entity. The function delegates the forging process to the entityForgingContract using the funds provided (msg.value). It then ensures that the call to forging is authorized by verifying that the caller is the entityForgingContract. The function calculates the new entities entropy by averaging the entropy values of the two parent entities. A new entity is minted with this entropy, and the contract increments the current generation, updating the total number of entity's in circulation. Finally, the function emits an event documenting the forging and returns the new entities ID.
 
-```
+```solidity
  function forge(
     uint256 parent1Id,
     uint256 parent2Id,
@@ -94,7 +100,7 @@ The forging function in facilitates the forging between two entities, identified
 
 Allows the owner of a forger entity to list it for forging by setting a fee. This ensures the caller owns the entity and resets the forging count if needed. It retrieves the entity's entropy to determine its forging potential and checks if the entity has reached its forging limit. The function also verifies if the entity is a forger, based on its entropy. If all conditions are met, the entity is listed for forging with the specified fee, and an event is emitted to signal that the entity is available for forging.
 
-```
+```solidity
 function listForForging(
     uint256 tokenId,
     uint256 fee

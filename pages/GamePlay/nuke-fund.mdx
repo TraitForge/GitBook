@@ -1,3 +1,7 @@
+---
+title: "Nuke Fund"
+---
+
 # Nuke Fund
 
 The Nuke Fund is a contract that accumulates ETH from new mints and economic activity, it handles economic transactions related to the fund, and receives and distributes Ethereum (ETH) based on interactions with entities.
@@ -57,7 +61,7 @@ There are 3 functions involved in the process of nuking an Entity, "calculateAge
 
 The function calculateAge determines the age of an Entity. It first ensures that the token exists by checking its ownership status. Then, it calculates the number of days since the entity's creation by using the current block timestamp and the token's creation timestamp. The age calculation is adjusted by a performance factor derived from the entity's entropy, and this adjusted age is further normalized to years by dividing by 365. The function returns this calculated age as an integer.
 
-``` 
+```solidity
 function calculateAge(uint256 tokenId) public view returns (uint256) {
     require(nftContract.ownerOf(tokenId) != address(0), 'Token does not exist');
 
@@ -80,7 +84,7 @@ function calculateAge(uint256 tokenId) public view returns (uint256) {
 
 Calculates the nuke factor of an entity, which influences the claimable amount from the nuke fund. This function ensures the tokens existence, then uses its entropy and age to compute the nuke factor. It divides the tokens entropy by four for an initial value, and adds this to a scaled product of the entities age in days. This resultant nuke factor determines the portion of the fund an entity owner can claim, integrating both the entities unique attributes and its age into the calculation.
 
-``` 
+```solidity
   function calculateNukeFactor(uint256 tokenId) public view returns (uint256) {
     require(
       nftContract.ownerOf(tokenId) != address(0),
@@ -103,7 +107,7 @@ Calculates the nuke factor of an entity, which influences the claimable amount f
 
 The receive function handles incoming ETH transactions by first calculating and setting aside a 10% developer share of the received amount. The remainder is added to the fund's balance. Depending on the status of the airdrop contract, the developer share is either transferred directly to the developer's address, to the contract owner (if DAO funding isn't allowed), or to the DAO address. The function then logs the transaction with the sender and amount details, and updates the overall fund balance. This systematic distribution and logging ensure transparency and proper allocation of funds based on the contract's operational state.
 
-``` 
+```solidity
 receive() external payable {
     uint256 devShare = msg.value / taxCut; // Calculate developer's share (10%)
     uint256 remainingFund = msg.value - devShare; // Calculate remaining funds to add to the fund
@@ -126,4 +130,4 @@ receive() external payable {
     emit FundReceived(msg.sender, msg.value); // Log the received funds
     emit FundBalanceUpdated(fund); // Update the fund balance
   }
-``` 
+```
